@@ -1,1 +1,1 @@
-{"name":"conquest","version":"1.0.0","private":true,"type":"module","scripts":{"dev":"node server.js","start":"node server.js","test":"node --test"}}
+{"name":"conquest","version":"1.0.0","private":true,"type":"module","scripts":{"dev":"node server.js","start":"node server.js","test":"node --test"},"dependencies":{"three":"0.180.0"}}
