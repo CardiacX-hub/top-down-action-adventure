@@ -2,7 +2,7 @@
 
 [Play Conquest](https://cardiacx-hub.github.io/top-down-action-adventure/)
 
-A browser-based isometric 3D voxel action-adventure with four classes, a growing settlement, crop-based alchemy, and six long boss expeditions. All runtime files are served locally; the game does not require a CDN.
+A browser-based isometric 3D voxel action-adventure with four classes, a growing settlement, crop-based alchemy, and nine sequential boss expeditions. All runtime files are served locally; the game does not require a CDN.
 
 ## Controls
 
@@ -12,7 +12,7 @@ A browser-based isometric 3D voxel action-adventure with four classes, a growing
 - **Space:** attack the nearest creature continuously.
 - **Q / R / Z / X:** use the four class powers shown by their illustrated symbols and cooldowns.
 - **E:** use the potion equipped at the Apothecary.
-- **F:** open nearby building options, speak, gather, or collect the relic.
+- **F:** quick-harvest nearby ripe crops, open building options, speak, gather, or collect the relic.
 - **Esc:** close a building menu and resume the game.
 - **+ / − / expand:** zoom or enter fullscreen.
 
@@ -24,16 +24,18 @@ Management no longer requires scrolling below the world. Options appear automati
 
 - **Hearthhall:** aligned with the workshop row on a larger starting estate. Upgrade it into a Grand Hearthhall, a fortified keep, then a castle to unlock each next estate tier. Expand the estate three times, add three plots per farmland upgrade (6 → 15 total), research new crop varieties, recruit woodcutters, or choose/train a class. Extra farmland requires a matching estate expansion. Land and plots also expand visibly in the 3D world.
 - **Ancient sanctum:** spend class XP in three five-tier branches (15 upgrades per class, 60 in total), or restore the building. Sanctum levels unlock tiers 1, 2, 3, then both final tiers at masterwork level 3.
-- **Workshop plots:** the Apothecary and Blacksmith begin as empty land. Select either plot to choose either workshop; each type can be built once. Existing saves keep their restored shops.
+- **Building plots:** new games begin with exactly one empty building plot. Choose an Apothecary, Blacksmith, or Runeforge for it. Upgrade Hearthhall and expand the estate, then purchase an Additional building plot upgrade to add one plot at a time (maximum three). Each workshop type can be built once. Existing saves keep their constructed workshops and sufficient plot capacity.
 - **Apothecary:** craft potions from harvested ingredients and equip one type in the E slot. Every returned adventure reveals a stronger crop-based Wayfarer’s reserve recipe. Reserves automatically fill in when the equipped potion supply runs out.
 - **Blacksmith:** browse and purchase armor that affects actual combat defense. Every returned adventure reveals a new armor pattern; advanced patterns require a higher forge level.
-- **Runeforge:** build and upgrade this enchanting building, then bind armor, health, or damage runes to purchased armor. One enchantment can be active at a time.
-- **Garden:** plant and harvest all unlocked crops using the nearby popup.
+- **Runeforge:** absent at the start; construct it on an available building plot, upgrade it, then bind armor, health, or damage runes to purchased armor. One enchantment can be active at a time.
+- **Garden:** plant crops in the garden menu. A quick-harvest popup appears within 100 units of ripe crops; click it or press F to walk over and cut nearby crops with a sickle animation. Only mature crops are collected, once each. Movement cancels the queue. Harvesting from the garden menu also uses the cutting animation.
 - **Forest gate:** at the end of the village path. Its popup lets you choose an expedition. Entering the gate requires a deliberate travel selection.
 
 Each building has three restoration levels. Villagers gather timber continuously, including up to one day of offline gathering. Coins and class XP come from quests, harvests, and adventures.
 
 ## Longer expeditions and bosses
+
+The first venture is available immediately. Each subsequent venture requires saved victories in every preceding venture; retreat, rescue and equipment discoveries do not unlock destinations. Existing victory records are retained. Returning after a boss victory unlocks the next destination. Enemy health, damage, armor, speed and boss strength rise at every stage; later encounters also contain more enemies. Even the first venture is stronger than before.
 
 Each winding trail spans multiple terrain chunks, with four alternate loops and four treasure spurs ending in hidden cache rooms. Forks extend hundreds of units beyond the main road; optional caches reward coins, class XP and timber. The camera follows your character along the road. Five guarded clearings open in sequence as you approach; defeat each group to open the road ahead. The final arena contains a distinctive voxel boss:
 
@@ -45,6 +47,9 @@ Each winding trail spans multiple terrain chunks, with four alternate loops and 
 | Frostfang Highlands | 8,200 | Skadi, the Glacier Matriarch | Glacier-armored beast with a marked charge |
 | Stormglass Ruins | 9,000 | Veyr, the Thunder Titan | Lightning-crowned titan with overlapping eruptions |
 | Abyssal Crown | 10,000 | Nhal, the Eclipse Regent | Eclipse-crowned demon with a marked blast |
+| Sunken Archive | 11,000 | Thalassa, Keeper of the Deep | Coral-crowned leviathan with overlapping eruptions |
+| Blightroot Expanse | 12,000 | Vorruk, the Plagueheart | Plague-crowned beast with a marked charge |
+| Infernal Throne | 13,200 | Malachar, the Last Infernal King | Flame-crowned demon with a marked blast |
 
 Crimson ground marks warn before attacks resolve. Move away from the marked area to dodge. Bosses become faster below half health. After victory, claim the bounty from the victory popup or walk to the final gate. Retreating early keeps ordinary earned rewards but does not award a boss bounty. Defeat costs up to 20 coins and returns you home. Victory, retreat and rescue each open an adventure summary showing time, foes, clearings, hidden caches, potion use, net coins, earned XP and timber. Each outing also advances the armor and potion discovery catalogs.
 
@@ -119,6 +124,6 @@ npm test
 
 The server listens on port 3000, or `PORT`. Three.js 0.180.0 is pinned and its browser modules/license are included in `vendor/`, so GitHub Pages requires no build step.
 
-Key modules: `game.js` (controls/combat), `interface.js` (proximity menus and dialogs), `model.js` (economy/skills/crops), `progression.js` (estate/alchemy), `settlement.js` (workshop placement, equipment, enchants and expedition summaries), `crafting.js` (forge recipes), `abilities.js` (additional powers and targeting), `expedition.js` (trail/boss rules), `world3d.js` and `trail-world.js` (3D presentation), `voxel-models.js` (editable procedural models), `power-icons.js` (power symbols), and `quests.js` (story progression).
+Key modules: `game.js` (controls/combat), `interface.js` (proximity menus and dialogs), `model.js` (economy/skills/crops), `progression.js` (estate/alchemy), `settlement.js` (workshop placement, equipment, enchants and expedition summaries), `crafting.js` (forge recipes), `abilities.js` (additional powers and targeting), `expedition.js` (ordered campaign, difficulty and bosses), `farming.js` (crop positions and nearby harvest checks), `world3d.js` and `trail-world.js` (3D presentation), `voxel-models.js` (editable procedural models), `power-icons.js` (power symbols), and `quests.js` (story progression).
 
 GitHub Pages serves **main / (root)**. The `gh-pages` branch is also maintained as a static-only release. Publish all root application `.js` files (excluding the development server), `index.html`, `style.css`, `.nojekyll`, `vendor/`, and `assets/` together.
