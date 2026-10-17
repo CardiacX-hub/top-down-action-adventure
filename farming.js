@@ -1,0 +1,2 @@
+export function cropPosition(index){return{x:690+(index%3)*50,y:365+Math.floor(index/3)*52};}
+export function readyCrops(s,player,radius=100,now=Date.now()){return s.plots.map((p,index)=>({index,plant:p,...cropPosition(index)})).filter(p=>p.plant&&now>=p.plant.ready&&Math.hypot(p.x-player.x,p.y-player.y)<=radius).sort((a,b)=>Math.hypot(a.x-player.x,a.y-player.y)-Math.hypot(b.x-player.x,b.y-player.y));}
