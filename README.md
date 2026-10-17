@@ -8,15 +8,15 @@ A browser-based isometric 3D voxel action-adventure with four classes, a growing
 
 - **WASD / arrows:** move relative to the screen. Movement works in the village and on wild trails.
 - **Left click:** select a building to review its options, walk on village ground, or aim and attack in the wild.
-- **Right click / Shift-click:** walk to a point in the wild.
+- **Right click / Shift-click:** walk to a point in either region, including behind buildings.
 - **Space:** attack the nearest creature continuously.
-- **Q / R:** use the two class powers shown by their illustrated symbols and cooldowns.
+- **Q / R / Z / X:** use the four class powers shown by their illustrated symbols and cooldowns.
 - **E:** use the potion equipped at the Apothecary.
 - **F:** open nearby building options, speak, gather, or collect the relic.
 - **Esc:** close a building menu and resume the game.
 - **+ / − / expand:** zoom or enter fullscreen.
 
-Phone controls use a left thumb joystick with analog movement and a dead zone. Circular buttons on the right provide hold-to-attack, two class powers with symbols/cooldowns, potions and interaction. Movement and powers support simultaneous touches. Targeted phone powers aim at the nearest enemy. Release, cancellation, focus loss and opening a menu reset movement. Tap ground to walk as an alternative. Walk around buildings if a click destination is blocked; click movement does not automatically find paths around structures.
+Phone controls use a left thumb joystick with analog movement and a dead zone. Circular buttons on the right provide hold-to-attack, four class powers with symbols/cooldowns, potions and interaction. Movement and powers support simultaneous touches. Targeted phone powers aim at the nearest enemy. Release, cancellation, focus loss and opening a menu reset movement. Tap ground to walk as an alternative. Village click movement routes around buildings, including the forge and anvil.
 
 ## Walk-up settlement menus
 
@@ -79,7 +79,20 @@ Crops grow while you adventure or are away. At the Apothecary, recipes show the 
 
 Ingredients and coins are deducted only when all recipe requirements are satisfied. Craft a potion, equip it, then use E in an expedition. Temporary effects expire on returning home.
 
+## More crafting and workshop recovery
+
+The Blacksmith now forges three weapon tiers (+6/+14/+24 damage) and three cloak tiers (+20/+45/+75 health, with armor on higher tiers), using timber, coins and crops. Crafted gear equips automatically and upgrades replace the same slot. Crop ingredients are also required for three new Runeforge enchants: Storm sigil, Worldroot weave and Eclipse binding.
+
+The Apothecary adds Windrunner cordial (+40% movement), Bottled lightning (+10 lightning damage per attack) and Guardian’s brew (armor and shield). Soulfire now refreshes all four power cooldowns.
+
+Constructing a workshop while standing on its vacant plot previously enclosed the hero in collision geometry. Construction, leaving menus and movement now recover enclosed heroes to nearby walkable ground. Village click destinations also use obstacle-aware routes. Forge/anvil and castle collision footprints match the larger models.
+
 ## Class progression
+
+- **Druid Z/X:** Spirit stampede launches three piercing spirit beasts; Thornskin adds armor and regeneration.
+- **Paladin Z/X:** Hammer of dawn pierces and roots enemies; Heaven’s judgment calls holy pillars and heals.
+- **Warlock Z/X:** Chaos meteor blasts and burns an area; Soul tether chains enemies, roots them and steals health.
+- **Wizard Z/X:** Chain lightning jumps across up to five enemies; Froststep blinks along valid ground, freezes nearby foes and grants a shield. Phone powers target nearby enemies.
 
 - **Druid:** antlers, leaf mantle, living staff; thorn volleys, Living grove (Q), Entangling roots (R), and a modeled bear form. Deeper casting ranks unlock piercing and five-thorn volleys; the final healing rank adds passive regeneration.
 - **Paladin:** silver plate, sun shield, golden sword; melee cleaves, Consecration (Q), and Dawn charge (R). Deeper tanking reflects damage and deeper healing restores health on defeating foes.
@@ -106,6 +119,6 @@ npm test
 
 The server listens on port 3000, or `PORT`. Three.js 0.180.0 is pinned and its browser modules/license are included in `vendor/`, so GitHub Pages requires no build step.
 
-Key modules: `game.js` (controls/combat), `interface.js` (proximity menus and dialogs), `model.js` (economy/skills/crops), `progression.js` (estate/alchemy), `settlement.js` (workshop placement, equipment, enchants and expedition summaries), `expedition.js` (trail/boss rules), `world3d.js` and `trail-world.js` (3D presentation), `voxel-models.js` (editable procedural models), `power-icons.js` (power symbols), and `quests.js` (story progression).
+Key modules: `game.js` (controls/combat), `interface.js` (proximity menus and dialogs), `model.js` (economy/skills/crops), `progression.js` (estate/alchemy), `settlement.js` (workshop placement, equipment, enchants and expedition summaries), `crafting.js` (forge recipes), `abilities.js` (additional powers and targeting), `expedition.js` (trail/boss rules), `world3d.js` and `trail-world.js` (3D presentation), `voxel-models.js` (editable procedural models), `power-icons.js` (power symbols), and `quests.js` (story progression).
 
 GitHub Pages serves **main / (root)**. The `gh-pages` branch is also maintained as a static-only release. Publish all root application `.js` files (excluding the development server), `index.html`, `style.css`, `.nojekyll`, `vendor/`, and `assets/` together.
