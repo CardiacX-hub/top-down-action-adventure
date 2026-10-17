@@ -1,0 +1,13 @@
+const paths={
+ druidQ:'M32 55V26M32 37L18 26M32 43l15-12M32 29C10 30 9 10 10 9c20 0 24 8 22 20Zm2-3C34 9 48 8 55 9c1 12-4 21-21 17Z',
+ druidR:'M14 9c1 16 14 12 17 25v21M50 9C48 25 35 22 31 34M31 43 15 54M31 43l17 12M15 54l-4-8M48 55l6-8M20 22l-9 5M44 23l10 3',
+ paladinQ:'M32 7 12 15v17c0 15 20 25 20 25s20-10 20-25V15L32 7ZM32 20v22M23 29h18',
+ paladinR:'M34 8 49 9 48 24 26 46 17 37 34 8ZM13 33l17 17M10 54l10-12M7 16h13M5 25h11M46 42h12M41 52h13',
+ warlockQ:'M17 15 10 6v20M47 15l7-9v20M16 29c-2-22 34-22 32 0v12l-9 7v9H25v-9l-9-7V29ZM23 29l6 4-6 4M41 29l-6 4 6 4M28 49v7M36 49v7',
+ warlockR:'M32 6 56 20v25L32 59 8 45V20L32 6ZM32 14l15 31H17l15-31ZM18 23l28 1-14 26-14-27Z',
+ wizardQ:'M34 5c3 17 16 17 17 31 1 14-8 22-19 22S10 49 13 36c1-8 7-13 10-20 1 9 5 11 7 12 5-8 4-16 4-23ZM32 35c-9 12-7 17 0 20 8-5 8-11 0-20Z',
+ wizardR:'M32 6v52M9 19l46 26M9 45l46-26M24 12l8 8 8-8M24 52l8-8 8 8M12 27l11-3-3-11M44 51l-3-11 11-3M12 37l11 3-3 11M44 13l-3 11 11 3',
+ potion:'M23 7h18M25 7v15L13 43c-5 10 2 15 8 15h22c7 0 13-6 8-15L39 22V7M20 37h24M32 40v12M26 46h12',attack:'M40 7h14v14L25 50 14 39 40 7ZM10 35l19 19M8 56l10-12'
+};
+export function powerIcon(id,slot,size=30){const key=slot==='E'?'potion':slot==='attack'?'attack':id+slot;return`<svg class="power-symbol" width="${size}" height="${size}" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${paths[key]||paths.attack}"/></svg>`;}
+export function skillEffect(id,branch,rank){const table={druid:[`+${rank*10} max health · ${5+rank*2}s bear form`,`+${rank*5} spell damage${rank>=4?' · piercing thorns':''}${rank===5?' · five-thorn volley':''}`,`+${rank*18} burst healing · stronger grove${rank===5?' · 2 HP/s regeneration':''}`],paladin:[`+${rank*15} health · +${rank*3} armor${rank>=4?' · reflected damage':''}`,`+${rank*20} Consecration healing${rank>=4?' · heal on defeat':''}`,`+${rank*6} damage · +${rank*6} Consecration damage/tick`],warlock:[`${rank>=4?3:rank>=3?2:1} permanent fiend${rank>=3?'s':''} · ${8+rank*7} summon damage`,`${5+rank*2}s demon form · faster soul bolts`,`+${rank*6} damage${rank===5?' · triple homing volley':''}`],wizard:[`${rank>=4?3:rank>=3?2:1} elemental${rank>=3?'s':''} · ${8+rank*7} summon damage`,`+${rank*6} damage${rank===5?' · five-ember volley':''}`,`+${(rank*.35).toFixed(2)}s freezing · +${rank*10} lance healing${rank===5?' · frost bolts root':''}`]};return table[id][branch];}
