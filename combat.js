@@ -7,10 +7,10 @@ export const COMBAT = {
 };
 export function attackPattern(id,skills=[0,0,0],transformed=false){
  const c=COMBAT[id];
- if(id==='paladin'||(id==='druid'&&transformed))return {kind:'melee',count:1,range:id==='paladin'?105:85,interval:transformed?.42:c.interval,multiplier:transformed?1.9:1.6};
- if(id==='druid')return{kind:'thorn',count:skills[1]>=2?3:1,interval:c.interval,speed:c.speed,multiplier:1};
- if(id==='warlock')return{kind:'soul',count:1,interval:transformed?.38:c.interval,speed:c.speed,multiplier:transformed?1.8:1.2,homing:true};
- return{kind:'elemental',count:skills[1]>=3?3:1,interval:c.interval,speed:c.speed,multiplier:1};
+ if(id==='paladin'||(id==='druid'&&transformed))return {kind:'melee',count:1,range:id==='paladin'?105+skills[2]*3:85+skills[0]*4,interval:transformed?.42:c.interval,multiplier:transformed?1.9+skills[0]*.1:1.6+skills[2]*.05};
+ if(id==='druid')return{kind:'thorn',count:skills[1]>=5?5:skills[1]>=2?3:1,pierce:skills[1]>=4,interval:c.interval,speed:c.speed,multiplier:1};
+ if(id==='warlock')return{kind:'soul',count:skills[2]>=5?3:1,interval:transformed?.38:c.interval,speed:c.speed,multiplier:transformed?1.8:1.2,homing:true};
+ return{kind:'elemental',count:skills[1]>=5?5:skills[1]>=3?3:1,interval:c.interval,speed:c.speed,multiplier:1};
 }
 export function inCone(origin,target,angle,range,halfAngle=1.15){const dx=target.x-origin.x,dy=target.y-origin.y;return Math.hypot(dx,dy)<=range&&Math.abs(Math.atan2(Math.sin(Math.atan2(dy,dx)-angle),Math.cos(Math.atan2(dy,dx)-angle)))<=halfAngle;}
 export function boundedTarget(origin,target,range){const dx=target.x-origin.x,dy=target.y-origin.y,d=Math.hypot(dx,dy)||1;return{x:origin.x+dx/d*Math.min(d,range),y:origin.y+dy/d*Math.min(d,range)};}
