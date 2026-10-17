@@ -2,7 +2,7 @@
 
 [Play Conquest](https://cardiacx-hub.github.io/top-down-action-adventure/)
 
-A browser-based isometric 3D voxel action-adventure with four classes, a growing settlement, crop-based alchemy, and three long boss expeditions. All runtime files are served locally; the game does not require a CDN.
+A browser-based isometric 3D voxel action-adventure with four classes, a growing settlement, crop-based alchemy, and six long boss expeditions. All runtime files are served locally; the game does not require a CDN.
 
 ## Controls
 
@@ -16,7 +16,7 @@ A browser-based isometric 3D voxel action-adventure with four classes, a growing
 - **Esc:** close a building menu and resume the game.
 - **+ / − / expand:** zoom or enter fullscreen.
 
-Touch controls are included. Tap the ground to walk; use the direction pad and Attack/Q/R/F/E buttons beneath the world. Walk around buildings if a click destination is blocked; click movement does not automatically find paths around structures.
+Phone controls use a left thumb joystick with analog movement and a dead zone. Circular buttons on the right provide hold-to-attack, two class powers with symbols/cooldowns, potions and interaction. Movement and powers support simultaneous touches. Targeted phone powers aim at the nearest enemy. Release, cancellation, focus loss and opening a menu reset movement. Tap ground to walk as an alternative. Walk around buildings if a click destination is blocked; click movement does not automatically find paths around structures.
 
 ## Walk-up settlement menus
 
@@ -42,6 +42,9 @@ Each winding trail spans multiple terrain chunks, with four alternate loops and 
 | Briarwild Road | 5,200 | Mawroot, the Thorn King | Antlered beast with a telegraphed charge |
 | Cinder Pilgrimage | 6,400 | Azrath, Cinder Sovereign | Winged demon with a marked hellfire blast |
 | Hollowfen Passage | 7,600 | The Hollow Colossus | Many-limbed ancient with overlapping void eruptions |
+| Frostfang Highlands | 8,200 | Skadi, the Glacier Matriarch | Glacier-armored beast with a marked charge |
+| Stormglass Ruins | 9,000 | Veyr, the Thunder Titan | Lightning-crowned titan with overlapping eruptions |
+| Abyssal Crown | 10,000 | Nhal, the Eclipse Regent | Eclipse-crowned demon with a marked blast |
 
 Crimson ground marks warn before attacks resolve. Move away from the marked area to dodge. Bosses become faster below half health. After victory, claim the bounty from the victory popup or walk to the final gate. Retreating early keeps ordinary earned rewards but does not award a boss bounty. Defeat costs up to 20 coins and returns you home. Victory, retreat and rescue each open an adventure summary showing time, foes, clearings, hidden caches, potion use, net coins, earned XP and timber. Each outing also advances the armor and potion discovery catalogs.
 
