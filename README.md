@@ -7,7 +7,7 @@ A browser-based isometric 3D voxel action-adventure with four classes, a growing
 ## Controls
 
 - **WASD / arrows:** move relative to the screen. Movement works in the village and on wild trails.
-- **Left click:** walk in the village, or aim and attack in the wild.
+- **Left click:** select a building to review its options, walk on village ground, or aim and attack in the wild.
 - **Right click / Shift-click:** walk to a point in the wild.
 - **Space:** attack the nearest creature continuously.
 - **Q / R:** use the two class powers shown by their illustrated symbols and cooldowns.
@@ -22,10 +22,12 @@ Touch controls are included. Tap the ground to walk; use the direction pad and A
 
 Management no longer requires scrolling below the world. Options appear automatically when you approach a location. Click an option or press F to open its dialog. Walking away dismisses the nearby options; an open management dialog pauses the game and scrolls internally if needed.
 
-- **Hearthhall:** the main building near the starting area. Expand the estate three times, add three plots per farmland upgrade (6 → 15 total), research new crop varieties, recruit woodcutters, or choose/train a class. Extra farmland requires a matching estate expansion. Land and plots also expand visibly in the 3D world.
+- **Hearthhall:** aligned with the workshop row on a larger starting estate. Upgrade it into a Grand Hearthhall, a fortified keep, then a castle to unlock each next estate tier. Expand the estate three times, add three plots per farmland upgrade (6 → 15 total), research new crop varieties, recruit woodcutters, or choose/train a class. Extra farmland requires a matching estate expansion. Land and plots also expand visibly in the 3D world.
 - **Ancient sanctum:** spend class XP in three five-tier branches (15 upgrades per class, 60 in total), or restore the building. Sanctum levels unlock tiers 1, 2, 3, then both final tiers at masterwork level 3.
-- **Apothecary:** restore the building, craft potions from harvested ingredients, and equip one potion type in the E slot.
-- **Blacksmith:** restore and upgrade the forge for permanent armor on every class.
+- **Workshop plots:** the Apothecary and Blacksmith begin as empty land. Select either plot to choose either workshop; each type can be built once. Existing saves keep their restored shops.
+- **Apothecary:** craft potions from harvested ingredients and equip one type in the E slot. Every returned adventure reveals a stronger crop-based Wayfarer’s reserve recipe. Reserves automatically fill in when the equipped potion supply runs out.
+- **Blacksmith:** browse and purchase armor that affects actual combat defense. Every returned adventure reveals a new armor pattern; advanced patterns require a higher forge level.
+- **Runeforge:** build and upgrade this enchanting building, then bind armor, health, or damage runes to purchased armor. One enchantment can be active at a time.
 - **Garden:** plant and harvest all unlocked crops using the nearby popup.
 - **Forest gate:** at the end of the village path. Its popup lets you choose an expedition. Entering the gate requires a deliberate travel selection.
 
@@ -33,7 +35,7 @@ Each building has three restoration levels. Villagers gather timber continuously
 
 ## Longer expeditions and bosses
 
-Each winding trail spans multiple terrain chunks. The camera follows your character along the road. Five guarded clearings open in sequence as you approach; defeat each group to open the road ahead. The final arena contains a distinctive voxel boss:
+Each winding trail spans multiple terrain chunks, with four alternate loops and four treasure spurs ending in hidden cache rooms. Forks extend hundreds of units beyond the main road; optional caches reward coins, class XP and timber. The camera follows your character along the road. Five guarded clearings open in sequence as you approach; defeat each group to open the road ahead. The final arena contains a distinctive voxel boss:
 
 | Route | Trail length (game units) | Guardian | Signature attack |
 | --- | ---: | --- | --- |
@@ -41,7 +43,9 @@ Each winding trail spans multiple terrain chunks. The camera follows your charac
 | Cinder Pilgrimage | 6,400 | Azrath, Cinder Sovereign | Winged demon with a marked hellfire blast |
 | Hollowfen Passage | 7,600 | The Hollow Colossus | Many-limbed ancient with overlapping void eruptions |
 
-Crimson ground marks warn before attacks resolve. Move away from the marked area to dodge. Bosses become faster below half health. After victory, claim the bounty from the victory popup or walk to the final gate. Retreating early keeps ordinary earned rewards but does not award a boss bounty. Defeat costs up to 20 coins and returns you home.
+Crimson ground marks warn before attacks resolve. Move away from the marked area to dodge. Bosses become faster below half health. After victory, claim the bounty from the victory popup or walk to the final gate. Retreating early keeps ordinary earned rewards but does not award a boss bounty. Defeat costs up to 20 coins and returns you home. Victory, retreat and rescue each open an adventure summary showing time, foes, clearings, hidden caches, potion use, net coins, earned XP and timber. Each outing also advances the armor and potion discovery catalogs.
+
+Characters use articulated shoulders, hips, torso turns and spell gestures. Bear form has four moving paws and a crimson three-claw attack swipe. Estate expansion rebuilds one continuous grass/path surface and moves the boundary trees to its new edge.
 
 The moonstone for the story quest is found partway along each trail, until collected. Quest progress and completed route victories are saved. Reloading returns the hero home; an unfinished expedition is not resumed.
 
@@ -99,6 +103,6 @@ npm test
 
 The server listens on port 3000, or `PORT`. Three.js 0.180.0 is pinned and its browser modules/license are included in `vendor/`, so GitHub Pages requires no build step.
 
-Key modules: `game.js` (controls/combat), `interface.js` (proximity menus and dialogs), `model.js` (economy/skills/crops), `progression.js` (estate/alchemy), `expedition.js` (trail/boss rules), `world3d.js` and `trail-world.js` (3D presentation), `voxel-models.js` (editable procedural models), `power-icons.js` (power symbols), and `quests.js` (story progression).
+Key modules: `game.js` (controls/combat), `interface.js` (proximity menus and dialogs), `model.js` (economy/skills/crops), `progression.js` (estate/alchemy), `settlement.js` (workshop placement, equipment, enchants and expedition summaries), `expedition.js` (trail/boss rules), `world3d.js` and `trail-world.js` (3D presentation), `voxel-models.js` (editable procedural models), `power-icons.js` (power symbols), and `quests.js` (story progression).
 
 GitHub Pages serves **main / (root)**. The `gh-pages` branch is also maintained as a static-only release. Publish all root application `.js` files (excluding the development server), `index.html`, `style.css`, `.nojekyll`, `vendor/`, and `assets/` together.
