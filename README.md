@@ -9,29 +9,29 @@ A browser-based isometric 3D voxel action-adventure with four classes, a growing
 - **WASD / arrows:** move relative to the screen. Movement works in the village and on wild trails.
 - **Left click:** select a building to review its options, walk on village ground, or aim and attack in the wild.
 - **Right click / Shift-click:** walk to a point in either region, including behind buildings.
-- **Space:** attack the nearest creature continuously.
+- **Space:** attack continuously in the direction your character faces.
 - **Q / R / Z / X:** use the four class powers shown by their illustrated symbols and cooldowns.
 - **E:** use the potion equipped at the Apothecary.
 - **F:** quick-harvest nearby ripe crops, open building options, speak, gather, or collect the relic.
 - **Esc:** close a building menu and resume the game.
 - **+ / − / expand:** zoom or enter fullscreen.
 
-Phone controls use a left thumb joystick with analog movement and a dead zone. Circular buttons on the right provide hold-to-attack, four class powers with symbols/cooldowns, potions and interaction. Movement and powers support simultaneous touches. Targeted phone powers aim at the nearest enemy. Release, cancellation, focus loss and opening a menu reset movement. Tap ground to walk as an alternative. Village click movement routes around buildings, including the forge and anvil.
+Phone controls use a left thumb joystick with analog movement and a dead zone. Circular buttons on the right provide hold-to-attack, four class powers with symbols/cooldowns, potions and interaction. Movement and powers support simultaneous touches. The joystick sets your facing; attacks and targeted powers fire in that direction. Mouse movement sets facing on desktop. A gold ground indicator shows your firing line. Soul bolts fly straight. Lightning must hit an enemy along that line before it chains. Release, cancellation, focus loss and opening a menu reset movement. Tap ground to walk as an alternative. Village click movement routes around buildings, including the forge and anvil.
 
 ## Walk-up settlement menus
 
 Management no longer requires scrolling below the world. Options appear automatically when you approach a location. Click an option or press F to open its dialog. Walking away dismisses the nearby options; an open management dialog pauses the game and scrolls internally if needed.
 
 - **Hearthhall:** aligned with the workshop row on a larger starting estate. Upgrade it into a Grand Hearthhall, a fortified keep, then a castle to unlock each next estate tier. Expand the estate three times, add three plots per farmland upgrade (6 → 15 total), research new crop varieties, recruit woodcutters, or choose/train a class. Extra farmland requires a matching estate expansion. Land and plots also expand visibly in the 3D world.
-- **Ancient sanctum:** spend class XP in three five-tier branches (15 upgrades per class, 60 in total), or restore the building. Sanctum levels unlock tiers 1, 2, 3, then both final tiers at masterwork level 3.
-- **Building plots:** new games begin with exactly one empty building plot. Choose an Apothecary, Blacksmith, or Runeforge for it. Upgrade Hearthhall and expand the estate, then purchase an Additional building plot upgrade to add one plot at a time (maximum three). Each workshop type can be built once. Existing saves keep their constructed workshops and sufficient plot capacity.
+- **Ancient sanctum:** spend class XP in four five-tier branches (20 upgrades per class, 80 in total), or restore the building. Sanctum levels unlock tiers 1, 2, 3, then both final tiers at masterwork level 3.
+- **Building plots:** new games begin with exactly one empty building plot. Choose from six workshop types: Apothecary, Blacksmith, Runeforge, Lumbermill, Ranger lodge, or Star observatory. Every Hearthhall upgrade automatically unlocks one additional plot (four total), without a separate land purchase. Each workshop type can be built once. Existing saves keep their constructed workshops and sufficient plot capacity.
 - **Apothecary:** craft potions from harvested ingredients and equip one type in the E slot. Every returned adventure reveals a stronger crop-based Wayfarer’s reserve recipe. Reserves automatically fill in when the equipped potion supply runs out.
 - **Blacksmith:** browse and purchase armor that affects actual combat defense. Every returned adventure reveals a new armor pattern; advanced patterns require a higher forge level.
 - **Runeforge:** absent at the start; construct it on an available building plot, upgrade it, then bind armor, health, or damage runes to purchased armor. One enchantment can be active at a time.
 - **Garden:** plant crops in the garden menu. A quick-harvest popup appears within 100 units of ripe crops; click it or press F to walk over and cut nearby crops with a sickle animation. Only mature crops are collected, once each. Movement cancels the queue. Harvesting from the garden menu also uses the cutting animation.
 - **Forest gate:** at the end of the village path. Its popup lets you choose an expedition. Entering the gate requires a deliberate travel selection.
 
-Each building has three restoration levels. Villagers gather timber continuously, including up to one day of offline gathering. Coins and class XP come from quests, harvests, and adventures.
+Each building has three restoration levels. Villagers gather timber continuously, including up to one day of offline gathering. Villagers produce 1.5 timber per minute each, plus 1 per Lumbermill level. Ranger lodge grants +15 health per level. Star observatory grants +2 damage and 3% shorter power cooldowns per level. Each talent costs 60 class XP; a completed venture awards 41–49 XP, plus up to 8 XP from optional caches, so a new talent takes roughly one or two victories. Ordinary kills and village quests grant no XP. Kill bounties are 1–3 coins; each cache grants 3 coins and 2 timber; boss victory grants 5 timber. Harvests yield two ingredients and two coins profit. Existing saved XP and resources are preserved.
 
 ## Longer expeditions and bosses
 
@@ -53,7 +53,7 @@ Each winding trail spans multiple terrain chunks, with four alternate loops and 
 
 Crimson ground marks warn before attacks resolve. Move away from the marked area to dodge. Bosses become faster below half health. After victory, claim the bounty from the victory popup or walk to the final gate. Retreating early keeps ordinary earned rewards but does not award a boss bounty. Defeat costs up to 20 coins and returns you home. Victory, retreat and rescue each open an adventure summary showing time, foes, clearings, hidden caches, potion use, net coins, earned XP and timber. Each outing also advances the armor and potion discovery catalogs.
 
-Characters use articulated shoulders, hips, torso turns and spell gestures. Bear form has four moving paws and a crimson three-claw attack swipe. Estate expansion rebuilds one continuous grass/path surface and moves the boundary trees to its new edge.
+Characters use articulated shoulders, hips, torso turns and spell gestures. Bear form evolves through five appearances, ending in a vicious hunched werebear with two animated legs and clawed arms. Wolf form evolves through five lean, fanged appearances; it moves faster and deals more damage, while bear has more armor and maximum health. Press B or tap the form selector to choose a learned form, then Q to transform. Earlier bear ranks have four moving paws and a crimson three-claw attack swipe. Estate expansion rebuilds one continuous grass/path surface and moves the boundary trees to its new edge.
 
 The moonstone for the story quest is found partway along each trail, until collected. Quest progress and completed route victories are saved. Reloading returns the hero home; an unfinished expedition is not resumed.
 
@@ -63,13 +63,13 @@ Harvests provide coins and stored ingredients. They do **not** automatically gra
 
 | Crop | Growth | Research | Ingredients per harvest |
 | --- | ---: | ---: | ---: |
-| Carrots | 30s | 0 | 3 |
-| Moonleaf | 65s | 0 | 3 |
-| Sun pumpkins | 120s | 1 | 4 |
-| Ember peppers | 100s | 1 | 3 |
-| Frostberries | 150s | 2 | 4 |
-| Sun lotus | 210s | 3 | 3 |
-| Duskroot | 180s | 3 | 4 |
+| Carrots | 30s | 0 | 2 |
+| Moonleaf | 65s | 0 | 2 |
+| Sun pumpkins | 120s | 1 | 2 |
+| Ember peppers | 100s | 1 | 2 |
+| Frostberries | 150s | 2 | 2 |
+| Sun lotus | 210s | 3 | 2 |
+| Duskroot | 180s | 3 | 2 |
 
 Crops grow while you adventure or are away. At the Apothecary, recipes show the exact available/required ingredients, coin cost, building requirement, and owned potion count.
 
@@ -80,7 +80,7 @@ Crops grow while you adventure or are away. At the Apothecary, recipes show the 
 | Ironbark tonic | 2 pumpkins + 1 frostberry | 2 | +8 armor for 35 seconds |
 | Ember fury | 2 ember peppers + 1 moonleaf | 2 | +35% attack damage for 35 seconds |
 | Dawn elixir | 1 sun lotus + 2 frostberries + 1 moonleaf | 3 | Full healing and a brief shield |
-| Soulfire tincture | 2 duskroot + 1 ember pepper | 3 | Reset both active skill cooldowns |
+| Soulfire tincture | 2 duskroot + 1 ember pepper | 3 | Reset all four active skill cooldowns |
 
 Ingredients and coins are deducted only when all recipe requirements are satisfied. Craft a potion, equip it, then use E in an expedition. Temporary effects expire on returning home.
 
@@ -101,7 +101,7 @@ Constructing a workshop while standing on its vacant plot previously enclosed th
 
 - **Druid:** antlers, leaf mantle, living staff; thorn volleys, Living grove (Q), Entangling roots (R), and a modeled bear form. Deeper casting ranks unlock piercing and five-thorn volleys; the final healing rank adds passive regeneration.
 - **Paladin:** silver plate, sun shield, golden sword; melee cleaves, Consecration (Q), and Dawn charge (R). Deeper tanking reflects damage and deeper healing restores health on defeating foes.
-- **Warlock:** horned hood, violet robes, grimoire; homing life-stealing bolts, Soul rupture (Q), Summon fiend (R), and a winged demon form. Final spell mastery grants triple homing volleys; summoning supports up to three companions.
+- **Warlock:** horned hood, violet robes, grimoire; directional life-stealing bolts, Soul rupture (Q), Summon fiend (R), and a winged demon form. Final spell mastery grants triple directional volleys; summoning supports up to three companions.
 - **Wizard:** starred blue hat and crystal staff; alternating fire/frost projectiles, Inferno nova (Q), Glacial lance (R), and elemental companions. Final fire mastery adds five-projectile volleys and final water mastery roots with frost bolts.
 
 Ranks increase their branch's stats and power. Tier 4 techniques also reduce active cooldowns. XP is earned and spent separately for each class.
@@ -127,3 +127,5 @@ The server listens on port 3000, or `PORT`. Three.js 0.180.0 is pinned and its b
 Key modules: `game.js` (controls/combat), `interface.js` (proximity menus and dialogs), `model.js` (economy/skills/crops), `progression.js` (estate/alchemy), `settlement.js` (workshop placement, equipment, enchants and expedition summaries), `crafting.js` (forge recipes), `abilities.js` (additional powers and targeting), `expedition.js` (ordered campaign, difficulty and bosses), `farming.js` (crop positions and nearby harvest checks), `world3d.js` and `trail-world.js` (3D presentation), `voxel-models.js` (editable procedural models), `power-icons.js` (power symbols), and `quests.js` (story progression).
 
 GitHub Pages serves **main / (root)**. The `gh-pages` branch is also maintained as a static-only release. Publish all root application `.js` files (excluding the development server), `index.html`, `style.css`, `.nojekyll`, `vendor/`, and `assets/` together.
+
+All talent ranks add visible class-specific crystals, crests, embroidery, or sigils. The fourth branches are Wolf predator (Druid), Zeal (Paladin), Blood pact (Warlock), and Lightning (Wizard).

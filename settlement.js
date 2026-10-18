@@ -1,8 +1,8 @@
 // Workshop placement, expedition discoveries, purchased equipment and armor enchantments.
 export const ENCHANTS={storm:{name:'Storm sigil',description:'+8 damage and +2 armor',damage:8,armor:2,coins:135,wood:50,level:2,ingredients:{frost:3,ember:2}},roots:{name:'Worldroot weave',description:'+30 health and +3 armor',health:30,armor:3,coins:110,wood:45,level:2,ingredients:{herb:4,pumpkin:2}},eclipse:{name:'Eclipse binding',description:'+6 damage and +25 health',damage:6,health:25,coins:170,wood:60,level:3,ingredients:{dusk:3,lotus:2}},ward:{armor:5,name:'Warding runes',description:'+5 armor',coins:90,wood:35,level:1},vigor:{health:45,name:'Heart of oak',description:'+45 maximum health',coins:120,wood:45,level:2},flame:{damage:12,name:'Sunfire edge',description:'+12 attack damage',coins:150,wood:55,level:3}};
-export const SITE_IDS=['apothecary','smithy','enchanter'];
-export const WORKSHOPS={apothecary:{wood:45,coins:35},smithy:{wood:60,coins:45},enchanter:{wood:90,coins:80}};
-export function availableSites(s){const occupied=SITE_IDS.filter(id=>s.sites?.[id]);return [...occupied,...SITE_IDS.filter(id=>!occupied.includes(id))].slice(0,Math.max(occupied.length,Math.min(3,1+(s.home?.workshops||0))));}
+export const SITE_IDS=['apothecary','smithy','enchanter','workshop4'];
+export const WORKSHOPS={lumbermill:{wood:65,coins:55},lodge:{wood:70,coins:65},observatory:{wood:95,coins:85},apothecary:{wood:45,coins:35},smithy:{wood:60,coins:45},enchanter:{wood:90,coins:80}};
+export function availableSites(s){const occupied=SITE_IDS.filter(id=>s.sites?.[id]);return [...occupied,...SITE_IDS.filter(id=>!occupied.includes(id))].slice(0,Math.max(occupied.length,Math.min(SITE_IDS.length,1+Math.max(s.home?.hall||0,s.home?.workshops||0))));}
 export function siteAvailable(s,id){return availableSites(s).includes(id);}
 export function siteType(s,id){return s.sites?.[id]||null;}
 export function placeWorkshop(s,site,type){if(!siteAvailable(s,site)||!WORKSHOPS[type]||s.sites[site]||Object.values(s.sites).includes(type))return false;const cost=WORKSHOPS[type];if(s.wood<cost.wood||s.coins<cost.coins)return false;s.wood-=cost.wood;s.coins-=cost.coins;s.sites[site]=type;s.buildings[type]=1;return true;}
