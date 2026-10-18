@@ -1,5 +1,5 @@
-import {homeBounds} from './progression.js?v=talent-evolution-1';
-import{siteType,SITE_IDS,siteAvailable}from'./settlement.js?v=talent-evolution-1';
+import {homeBounds} from './progression.js?v=open-regions-1';
+import{siteType,SITE_IDS,siteAvailable}from'./settlement.js?v=open-regions-1';
 export const LOCATIONS={workshop4:{x:-30,y:530,name:'Building plot',action:'Browse workshop'},hall:{x:500,y:180,name:'Hearthhall',action:'Manage your home'},warden:{x:350,y:405,name:'Warden Elara',action:'Speak to the warden'},grove:{x:155,y:370,name:'Fallen timber',action:'Gather fallen timber'},garden:{x:745,y:390,name:'The garden',action:'Tend the garden'},apothecary:{x:220,y:180,name:'Apothecary',action:'Visit the apothecary'},smithy:{x:780,y:180,name:'Blacksmith',action:'Visit the blacksmith'},sanctum:{x:1030,y:180,name:'Ancient sanctum',action:'Visit the sanctum'},enchanter:{x:-30,y:180,name:'Runeforge',action:'Enchant armor'},gate:{x:890,y:430,name:'Forest gate',action:'Enter the forest'},relic:{x:825,y:115,name:'Moonstone relic',action:'Recover the moonstone'},exit:{x:130,y:440,name:'Way home',action:'Return to Willowglen'}};
 export const QUESTS=[
  {id:'welcome',title:'A warden’s welcome',description:'Walk to Warden Elara and press F to speak.',target:'warden',region:'home',coins:5,xp:0,wood:0},

@@ -33,11 +33,11 @@ Management no longer requires scrolling below the world. Options appear automati
 
 Each building has three restoration levels. Villagers gather timber continuously, including up to one day of offline gathering. Villagers produce 1.5 timber per minute each, plus 1 per Lumbermill level. Ranger lodge grants +15 health per level. Star observatory grants +2 damage and 3% shorter power cooldowns per level. Each talent costs 60 class XP; a completed venture awards 41–49 XP, plus up to 8 XP from optional caches, so a new talent takes roughly one or two victories. Ordinary kills and village quests grant no XP. Kill bounties are 1–3 coins; each cache grants 3 coins and 2 timber; boss victory grants 5 timber. Harvests yield two ingredients and two coins profit. Existing saved XP and resources are preserved.
 
-## Longer expeditions and bosses
+## Open regions and resident enemies
 
-The first venture is available immediately. Each subsequent venture requires saved victories in every preceding venture; retreat, rescue and equipment discoveries do not unlock destinations. Existing victory records are retained. Returning after a boss victory unlocks the next destination. Enemy health, damage, armor, speed and boss strength rise at every stage; later encounters also contain more enemies. Even the first venture is stronger than before.
+The first venture is available immediately. Each subsequent venture requires saved victories in every preceding venture; retreat, rescue and equipment discoveries do not unlock destinations. Existing victory records are retained. Returning after a boss victory unlocks the next destination. Enemy health, damage, armor, speed and boss strength rise at every stage; each region has 105 ordinary residents plus its boss.
 
-Each winding trail spans multiple terrain chunks, with four alternate loops and four treasure spurs ending in hidden cache rooms. Forks extend hundreds of units beyond the main road; optional caches reward coins, class XP and timber. The camera follows your character along the road. Five guarded clearings open in sequence as you approach; defeat each group to open the road ahead. The final arena contains a distinctive voxel boss:
+Each region is 1,800–2,400 units wide and freely walkable across its full length. Roads are landmarks rather than movement restrictions: travel cross-country, take braided roads, explore loops, and find four optional caches. All enemies and the boss are placed when you enter; moving across a checkpoint never creates a wave or locks the road. Groups range from solitary enemies to packs of eight, spread across five optional districts. Defeating the boss completes the region without requiring every resident to be killed.
 
 | Route | Trail length (game units) | Guardian | Signature attack |
 | --- | ---: | --- | --- |
@@ -51,7 +51,7 @@ Each winding trail spans multiple terrain chunks, with four alternate loops and 
 | Blightroot Expanse | 12,000 | Vorruk, the Plagueheart | Plague-crowned beast with a marked charge |
 | Infernal Throne | 13,200 | Malachar, the Last Infernal King | Flame-crowned demon with a marked blast |
 
-Crimson ground marks warn before attacks resolve. Move away from the marked area to dodge. Bosses become faster below half health. After victory, claim the bounty from the victory popup or walk to the final gate. Retreating early keeps ordinary earned rewards but does not award a boss bounty. Defeat costs up to 20 coins and returns you home. Victory, retreat and rescue each open an adventure summary showing time, foes, clearings, hidden caches, potion use, net coins, earned XP and timber. Each outing also advances the armor and potion discovery catalogs.
+Crimson ground marks warn before attacks resolve. Move away from the marked area to dodge. Bosses become faster below half health. After victory, claim the bounty from the victory popup or walk to the final gate. Retreating early keeps ordinary earned rewards but does not award a boss bounty. Defeat costs up to 20 coins and returns you home. Victory, retreat and rescue each open an adventure summary showing time, foes, secured districts, hidden caches, potion use, net coins, earned XP and timber. Each outing also advances the armor and potion discovery catalogs.
 
 Characters use articulated shoulders, hips, torso turns and spell gestures. Bear form evolves through five appearances, ending in a vicious hunched werebear with two animated legs and clawed arms. Wolf form evolves through five lean, fanged appearances; it moves faster and deals more damage, while bear has more armor and maximum health. Press B or tap the form selector to choose a learned form, then Q to transform. Earlier bear ranks have four moving paws and a crimson three-claw attack swipe. Estate expansion rebuilds one continuous grass/path surface and moves the boundary trees to its new edge.
 
@@ -129,3 +129,21 @@ Key modules: `game.js` (controls/combat), `interface.js` (proximity menus and di
 GitHub Pages serves **main / (root)**. The `gh-pages` branch is also maintained as a static-only release. Publish all root application `.js` files (excluding the development server), `index.html`, `style.css`, `.nojekyll`, `vendor/`, and `assets/` together.
 
 All talent ranks add visible class-specific crystals, crests, embroidery, or sigils. The fourth branches are Wolf predator (Druid), Zeal (Paladin), Blood pact (Warlock), and Lightning (Wizard).
+
+## Climates and enemy behavior
+
+| Region | Climate | Weather |
+| --- | --- | --- |
+| Briarwild | Temperate woodland | Drifting pollen |
+| Cinder | Volcanic badlands | Falling ash |
+| Hollowfen | Humid marsh | Rain |
+| Frostfang | Alpine snowfields | Snowfall |
+| Stormglass | Storm highlands | Rain and lightning |
+| Abyss | Eclipse wasteland | Void motes |
+| Sunken Archive | Tropical coast | Sea spray |
+| Blightroot | Fungal jungle | Spores |
+| Infernal Throne | Lava fields | Rising embers |
+
+Each climate has its own road geometry, ground colors, pools or vents, vegetation, lighting, ruins and enemy names. Twelve enemy model families cover wolves, boars, stags, spiders, crabs, serpents, archers, skeletons, shamans, imps, wisps and golems. Every level uses eight families. Enemies patrol near their original locations, engage only when approached or attacked, and return home if led too far away. Ranged attackers keep their distance and telegraph straight, dodgeable shots; healers mend nearby allies; chargers telegraph a rush; brutes trade speed for armor and health. Coin drops are limited to a third of residents to preserve the slower economy.
+
+The paladin's full silver-and-gold sword is attached to the right wrist. Attacks animate the shoulder, torso and wrist together through a broad blade sweep.

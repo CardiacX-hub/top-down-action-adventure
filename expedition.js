@@ -1,3 +1,4 @@
+import{BIOMES,biomeFor,mapBounds,ENEMY_TYPES}from'./biomes.js?v=open-regions-1';
 export const ROUTES=[
  {id:'briar',name:'The Briarwild Road',icon:'♞',length:5200,boss:'Mawroot, the Thorn King',kind:'beast',description:'Explore branching woodland roads, hidden treasure spurs, and five wolf-infested clearings. A corrupted antlered beast guards its end.',color:'#779853',sky:'#c9d8c0',coins:32,xp:41},
  {id:'cinder',name:'The Cinder Pilgrimage',icon:'♨',length:6400,boss:'Azrath, Cinder Sovereign',kind:'demon',description:'Explore forked ash roads and dead-end ruined shrines. A horned, winged demon waits beyond the burning gates.',color:'#a78267',sky:'#cdb8a7',coins:44,xp:42},
@@ -11,17 +12,25 @@ export const ROUTES=[
 ];
 export function routeUnlocked(s,id){const index=ROUTES.findIndex(r=>r.id===id);return index>=0&&ROUTES.slice(0,index).every(r=>(s.routeWins?.[r.id]||0)>0);}
 export function routeCombat(route,wave=1){const index=Math.max(0,ROUTES.findIndex(r=>r.id===route.id));return{level:index+1,count:3+wave+Math.floor(index/2),health:Math.round((42+wave*13)*(1+index*.32)),damage:15+wave*3+index*5,armor:index*2,speed:42+wave*5+index*3,attackInterval:Math.max(.8,1.15-index*.04),bossHealth:850+index*450+index*index*45,bossDamage:30+index*9,bossSpeed:48+index*4,hazardDamage:42+index*12,spellInterval:5.2-index*.2,coins:1+Math.floor(index/3),xp:0};}
-for(const route of ROUTES)route.hp=routeCombat(route).bossHealth;
-export function pathY(x){return 270+Math.sin(x/320)*85+Math.sin(x/710)*40;}
-export function routePoint(route,fraction){const x=Math.round(route.length*fraction);return{x,y:pathY(x)};}
-export function trailWidth(x,route){return x>route.length-650?180:105;}
+for(const [i,route]of ROUTES.entries()){route.biomeIndex=i;const b=BIOMES[i];Object.assign(route,{ground:b.ground,road:b.road,treeTint:b.flora,sky:b.sky,climate:b.climate});route.hp=routeCombat(route).bossHealth;route.description=b.climate+' · Explore broad open terrain, '+b.layout+', roaming wildlife and occupied ruins. Find '+route.boss+' in the far reaches.';}
+export function pathY(x,route=ROUTES[0]){const i=route.biomeIndex||0;return 270+Math.sin(x/(300+i*37))*(85+i*13)+Math.sin(x/(710-i*19))*(40+i*7);}
+export function routePoint(route,fraction){const x=Math.round(route.length*fraction);return{x,y:pathY(x,route)};}
+export function trailWidth(x,route){return biomeFor(route).width/2;}
 const branchCache=new WeakMap();
-export function branchSegments(route){if(branchCache.has(route))return branchCache.get(route);const list=[];for(let i=0;i<4;i++){const x=route.length*(.19+i*.16),side=i%2?1:-1,a={x:x-170,y:pathY(x-170)},b={x:x+30,y:pathY(x)+side*340},c={x:x+300,y:pathY(x+300)};list.push({a,b,width:85},{a:b,b:c,width:85});const end={x:x+90,y:b.y+side*220};list.push({a:b,b:end,width:80,cache:i});}branchCache.set(route,list);return list;}
+export function branchSegments(route){if(branchCache.has(route))return branchCache.get(route);const list=[];for(let i=0;i<4;i++){const index=route.biomeIndex||0,x=route.length*(.17+i*.19),side=(i+index)%2?1:-1,a={x:x-270-index*12,y:pathY(x-270-index*12,route)},b={x:x+30,y:pathY(x,route)+side*(380+index*20)},c={x:x+420,y:pathY(x+420,route)};list.push({a,b,width:85},{a:b,b:c,width:85});const end={x:x+90,y:b.y+side*220};list.push({a:b,b:end,width:80,cache:i});}branchCache.set(route,list);return list;}
 export function segmentDistance(x,y,a,b){const dx=b.x-a.x,dy=b.y-a.y,t=Math.max(0,Math.min(1,((x-a.x)*dx+(y-a.y)*dy)/(dx*dx+dy*dy)));return Math.hypot(x-a.x-t*dx,y-a.y-t*dy);}
-export function trailDistance(x,y,route){return Math.min(Math.abs(y-pathY(x)),...branchSegments(route).map(s=>segmentDistance(x,y,s.a,s.b)));}
-export function canWalkTrail(x,y,route,limit=Infinity){return x>=60&&x<=route.length+40&&x<=limit&&(Math.abs(y-pathY(x))<=trailWidth(x,route)||branchSegments(route).some(s=>segmentDistance(x,y,s.a,s.b)<=s.width));}
-export function newExpedition(id){const route=ROUTES.find(r=>r.id===id)||ROUTES[0];return{id:route.id,cleared:0,active:false,bossSpawned:false,bossDefeated:false,finished:false,discovered:[],checkpoints:[.14,.29,.44,.59,.74].map(f=>routePoint(route,f)),bossPoint:routePoint(route,.94),relicPoint:{...routePoint(route,.52),y:pathY(route.length*.52)+62}};}
+export function trailDistance(x,y,route){return Math.min(Math.abs(y-pathY(x,route)),...branchSegments(route).map(s=>segmentDistance(x,y,s.a,s.b)));}
+export function canWalkTrail(x,y,route){const b=mapBounds(route);return x>=b.left&&x<=b.right&&y>=b.top&&y<=b.bottom;}
+export function newExpedition(id){const route=ROUTES.find(r=>r.id===id)||ROUTES[0];return{id:route.id,cleared:0,active:false,bossSpawned:true,bossDefeated:false,finished:false,discovered:[],checkpoints:[.14,.29,.44,.59,.74].map(f=>routePoint(route,f)),bossPoint:routePoint(route,.94),relicPoint:{...routePoint(route,.52),y:pathY(route.length*.52,route)+62}};}
 export function routeFor(exp){return ROUTES.find(r=>r.id===exp.id)||ROUTES[0];}
-export function forwardLimit(exp){if(!exp.active)return Infinity;return exp.bossSpawned?routeFor(exp).length+40:exp.checkpoints[exp.cleared].x+150;}
-export function nextSpawn(exp,playerX,enemiesLeft){if(exp.bossDefeated)return null;if(exp.active&&enemiesLeft===0){exp.active=false;if(exp.bossSpawned){exp.bossDefeated=true;return'won';}exp.cleared++;}if(exp.active)return null;const point=exp.cleared<5?exp.checkpoints[exp.cleared]:exp.bossPoint;if(playerX>=point.x-200){exp.active=true;if(exp.cleared>=5){exp.bossSpawned=true;return'boss';}return'camp';}return null;}
+// Open regions have no checkpoint barriers or proximity-triggered spawn waves.
+export function forwardLimit(){return Infinity;}
+export function residentEnemies(route){const enemies=[],types=ENEMY_TYPES,index=route.biomeIndex||0,bounds=mapBounds(route),names=biomeFor(route).enemies;
+ for(let sector=0;sector<5;sector++)for(let group=0;group<5;group++){
+  const groupId=sector*5+group,sizes=[2,1,6,4,8],count=sizes[(group+sector+index)%sizes.length],x=440+sector*(route.length-900)/5+group*115,y=group===0?pathY(x,route)+125:270+Math.sin(groupId*2.399+index)*Math.min(700,biomeFor(route).width/2-200),t=routeCombat(route,sector+1);
+  for(let n=0;n<count;n++){const species=(groupId+n+index)%8,type=[0,1,2,3,4,5,6,7][species];const actual=index===1&&species===0?10:index===6&&species===1?8:index===5&&species===2?9:index===7&&species===4?11:type,def=types[actual],px=Math.max(bounds.left+35,Math.min(bounds.right-100,x+Math.cos(n*2.4)*45+n*6)),py=Math.max(bounds.top+40,Math.min(bounds.bottom-40,y+Math.sin(n*2.4)*55));enemies.push({x:px,y:py,homeX:px,homeY:py,hp:Math.round(t.health*def.health),max:Math.round(t.health*def.health),damage:Math.round(t.damage*def.damage),armor:t.armor+(def.role==='brute'?3:0),speed:t.speed*def.speed,attackInterval:def.role==='ranged'?2.6:def.role==='healer'?3.4:t.attackInterval,cd:1+n*.2,type:actual,role:def.role,name:names[species],group:groupId,sector,coins:(n+groupId)%3===0?t.coins:0,seed:groupId*20+n,alert:false,boss:false});}
+ }
+ const point=routePoint(route,.94),t=routeCombat(route,5);enemies.push({...point,homeX:point.x,homeY:point.y,hp:t.bossHealth,max:t.bossHealth,damage:t.bossDamage,armor:t.armor,speed:t.bossSpeed,attackInterval:t.attackInterval,spellInterval:t.spellInterval,hazardDamage:t.hazardDamage,cd:1,spellCd:2,boss:true,name:route.boss,kind:route.kind,type:3,role:'boss',seed:10000,alert:false});return enemies;
+}
+export function updateExpedition(exp,enemies){exp.cleared=Array.from({length:5},(_,i)=>i).filter(i=>!enemies.some(e=>!e.dead&&!e.boss&&e.sector===i)).length;if(!exp.bossDefeated&&!enemies.some(e=>e.boss&&!e.dead)){exp.bossDefeated=true;return'won';}return null;}
 export function bossWarning(kind,boss,player){if(kind==='beast')return{x:player.x,y:player.y,r:70,warn:1.2,t:1.2,damage:32,kind:'charge',fromX:boss.x,fromY:boss.y};if(kind==='demon')return{x:player.x,y:player.y,r:100,warn:1.5,t:1.5,damage:36,kind:'hellfire'};return{x:player.x,y:player.y,r:110,warn:1.8,t:1.8,damage:40,kind:'void'};}
