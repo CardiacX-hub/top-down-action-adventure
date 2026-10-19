@@ -1,6 +1,6 @@
-import {EXTRA_CROPS,ensureProgress,unlockedTier} from './progression.js?v=open-regions-1';
-import{gearBonuses}from'./crafting.js?v=open-regions-1';
-import{armorCatalog,ENCHANTS,WORKSHOPS}from'./settlement.js?v=open-regions-1';
+import {EXTRA_CROPS,ensureProgress,unlockedTier} from './progression.js?v=kingdoms-art-1';
+import{gearBonuses}from'./crafting.js?v=kingdoms-art-1';
+import{armorCatalog,ENCHANTS,WORKSHOPS}from'./settlement.js?v=kingdoms-art-1';
 export const CLASSES={
  druid:{name:'Druid',icon:'♧',subtitle:'Keeper of the old ways',color:'#91b36e',description:'Thorn volleys, a living healing grove (Q), and directional roots (R). Learn armored bear or swift wolf form, select with B, and transform with Q.',trees:[['Shapeshifting','Beast form increases attack power.','Wild instinct','Bear form','Ancient guardian','Primal colossus','Avatar of the wild'],['Casting','Nature magic strengthens every strike.','Thorn bolt','Briar storm','Wrath of the wild','Piercing thorns','Worldroot'],['Healing','Restore more health with Living grove.','Regrowth','Living bloom','Circle of life','Evergreen soul','Heart of the forest']]},
  paladin:{name:'Paladin',icon:'✠',subtitle:'A light against the darkness',color:'#d9bd66',description:'A close-combat guardian with a broad sword cleave. Q sanctifies the ground and shields you; R charges along your facing.',trees:[['Tanking','Reduce incoming damage and raise maximum health.','Iron resolve','Sacred shield','Unbreakable','Retribution armor','Bastion of dawn'],['Healing','Consecration restores your health.','Lay on hands','Holy renewal','Beacon of hope','Merciful judgment','Saint of the sun'],['Holy might','Holy power increases attack and Consecration damage.','Radiant strike','Divine judgment','Avenging light','Sunfire blade','Heavenfall']]},

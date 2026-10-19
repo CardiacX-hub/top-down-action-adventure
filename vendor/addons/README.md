@@ -1,0 +1,1 @@
+Three.js 0.180.0 GLTFLoader, SkeletonUtils, BufferGeometryUtils and RoomEnvironment addons. Obtained from the version-pinned, integrity-verified npm package used by the author's Kingdoms at War project. Bare `three` imports are changed to the existing vendored module. License: ../LICENSE.

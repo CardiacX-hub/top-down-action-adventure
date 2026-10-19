@@ -1,6 +1,6 @@
 import * as THREE from './vendor/three.module.js';
-import{Voxels}from'./voxel-models.js?v=open-regions-1';
-import{biomeFor,ENEMY_TYPES}from'./biomes.js?v=open-regions-1';
+import{Voxels}from'./voxel-models.js?v=kingdoms-art-1';
+import{biomeFor,ENEMY_TYPES}from'./biomes.js?v=kingdoms-art-1';
 export function enemyModel(type,route){const b=new Voxels(),climate=biomeFor(route),fur=climate.rock,trim=climate.flora,glow=climate.accent,shape=ENEMY_TYPES[type].shape,bone='#d6c9a7';
  if(['wolf','boar','stag'].includes(shape)){const wolf=shape==='wolf';b.ball(0,14,0,wolf?7:11,9,wolf?15:13,fur).ball(0,21,13,wolf?6:8,7,7,trim).ball(0,18,21,wolf?4:7,3,wolf?7:4,fur);for(const side of [-1,1]){for(const z of [-10,10])b.box(side*6-2,0,z-2,5,14,5,fur);b.box(side*4,25,12,3,7,3,trim).v(side*4,23,19,glow);b.line(side*4,18,23,side*7,23,25,1,bone);if(shape==='stag'){b.line(side*4,26,12,side*13,44,7,1,bone).line(side*9,35,9,side*18,40,4,1,bone);}}b.line(0,18,-13,0,25,-25,wolf?2:1,fur);
  }else if(shape==='spider'||shape==='crab'||shape==='serpent'){

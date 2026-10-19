@@ -1,8 +1,8 @@
 import * as THREE from './vendor/three.module.js';
-import{Voxels}from'./voxel-models.js?v=open-regions-1';
-import{pathY,trailDistance}from'./expedition.js?v=open-regions-1';
-import{biomeFor,mapBounds}from'./biomes.js?v=open-regions-1';
-import{climateProp}from'./enemy-models.js?v=open-regions-1';
+import{Voxels}from'./voxel-models.js?v=kingdoms-art-1';
+import{pathY,trailDistance}from'./expedition.js?v=kingdoms-art-1';
+import{biomeFor,mapBounds}from'./biomes.js?v=kingdoms-art-1';
+import{climateProp}from'./enemy-models.js?v=kingdoms-art-1';
 export function buildTrail(route){const root=new THREE.Group(),chunks=[],trees=[],climate=biomeFor(route),bounds=mapBounds(route),protos=[climateProp(route,0),climateProp(route,1)],index=route.biomeIndex;
  for(let start=60;start<bounds.right;start+=600){const group=new THREE.Group(),b=new Voxels(),details=new Voxels(),end=Math.min(start+600,bounds.right+20);
   for(let x=start;x<end;x+=20)for(let y=bounds.top;y<=bounds.bottom;y+=20){const ix=(x-500)/20,iz=(y-270)/20,d=trailDistance(x,y,route),cross=index%3===0?Math.abs(Math.sin(x/530)*500+270-y)<30:index%3===1?Math.abs((y-270)-Math.sin(x/790)*650)<30:Math.abs(Math.abs(y-270)-460)<25,path=d<35||cross,n=Math.abs(Math.round(x*7+y*13))%3,basin=Math.sin(x/260+index)*Math.cos(y/160+index),patch=!path&&basin>.72;
