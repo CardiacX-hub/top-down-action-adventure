@@ -2,7 +2,7 @@
 
 [Play Conquest](https://cardiacx-hub.github.io/top-down-action-adventure/)
 
-A browser-based isometric 3D voxel action-adventure with four classes, a growing settlement, crop-based alchemy, and nine sequential boss expeditions. All runtime files are served locally; the game does not require a CDN.
+A browser-based isometric 3D action-adventure using the author’s Kingdoms at War graphics, with four classes, a growing settlement, crop-based alchemy, and nine sequential boss expeditions. All runtime files are served locally; the game does not require a CDN.
 
 ## Controls
 
@@ -124,7 +124,7 @@ npm test
 
 The server listens on port 3000, or `PORT`. Three.js 0.180.0 is pinned and its browser modules/license are included in `vendor/`, so GitHub Pages requires no build step.
 
-Key modules: `game.js` (controls/combat), `interface.js` (proximity menus and dialogs), `model.js` (economy/skills/crops), `progression.js` (estate/alchemy), `settlement.js` (workshop placement, equipment, enchants and expedition summaries), `crafting.js` (forge recipes), `abilities.js` (additional powers and targeting), `expedition.js` (ordered campaign, difficulty and bosses), `farming.js` (crop positions and nearby harvest checks), `world3d.js` and `trail-world.js` (3D presentation), `voxel-models.js` (editable procedural models), `power-icons.js` (power symbols), and `quests.js` (story progression).
+Key modules: `game.js` (controls/combat), `interface.js` (proximity menus and dialogs), `model.js` (economy/skills/crops), `progression.js` (estate/alchemy), `settlement.js` (workshop placement, equipment, enchants and expedition summaries), `crafting.js` (forge recipes), `abilities.js` (additional powers and targeting), `expedition.js` (ordered campaign, difficulty and bosses), `farming.js` (crop positions and nearby harvest checks), `world3d.js` and `kingdoms-terrain.js` (3D presentation), `kingdoms-art.js` (source asset loading and animation), `kingdoms-beasts.js` (articulated druid forms), `voxel-models.js` (legacy procedural models), `power-icons.js` (power symbols), and `quests.js` (story progression).
 
 GitHub Pages serves **main / (root)**. The `gh-pages` branch is also maintained as a static-only release. Publish all root application `.js` files (excluding the development server), `index.html`, `style.css`, `.nojekyll`, `vendor/`, and `assets/` together.
 
@@ -147,3 +147,11 @@ All talent ranks add visible class-specific crystals, crests, embroidery, or sig
 Each climate has its own road geometry, ground colors, pools or vents, vegetation, lighting, ruins and enemy names. Twelve enemy model families cover wolves, boars, stags, spiders, crabs, serpents, archers, skeletons, shamans, imps, wisps and golems. Every level uses eight families. Enemies patrol near their original locations, engage only when approached or attacked, and return home if led too far away. Ranged attackers keep their distance and telegraph straight, dodgeable shots; healers mend nearby allies; chargers telegraph a rush; brutes trade speed for armor and health. Coin drops are limited to a third of residents to preserve the slower economy.
 
 The paladin's full silver-and-gold sword is attached to the right wrist. Attacks animate the shoulder, torso and wrist together through a broad blade sweep.
+
+## Kingdoms at War art integration
+
+Conquest reuses actual models, materials, textures, portraits and animation clips from the author's [Civ2 — Kingdoms at War](https://github.com/CardiacX-hub/Civ2), revision `e49824fa4e4fa1ca9b5ab8a024a2a2e505d1d5af`. The four heroes use its Covenant woodland keeper, Knight, Mage and Hunter models. Settlement buildings use its human architecture and four progressively larger Stronghold tiers. Workers, monsters, elementals, trees and rocks also reuse the original models. The terrain uses Kingdoms at War's painted PBR texture layers and leaf-grass geometry, with continuous roads across Conquest's home expansions and open regions.
+
+Assets load locally from `assets/kingdoms/`; models share exact source texture pixels by content hash to avoid repeating embedded image downloads. The importer and provenance manifest are documented in [assets/kingdoms/README.md](assets/kingdoms/README.md). No multiplayer service, account or upstream Kingdoms at War website is required to play Conquest. Loading the first adventure prepares additional enemy models; the settlement remains available if loading fails.
+
+Bear/wolf forms retain Conquest-specific smooth articulated models and all five talent appearances, including the final bipedal werebear. Combat, manual facing, crop harvesting, village construction, class XP, adventure unlocks and existing saves are retained.

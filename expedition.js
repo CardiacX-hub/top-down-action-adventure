@@ -1,4 +1,4 @@
-import{BIOMES,biomeFor,mapBounds,ENEMY_TYPES}from'./biomes.js?v=open-regions-1';
+import{BIOMES,biomeFor,mapBounds,ENEMY_TYPES}from'./biomes.js?v=kingdoms-art-1';
 export const ROUTES=[
  {id:'briar',name:'The Briarwild Road',icon:'♞',length:5200,boss:'Mawroot, the Thorn King',kind:'beast',description:'Explore branching woodland roads, hidden treasure spurs, and five wolf-infested clearings. A corrupted antlered beast guards its end.',color:'#779853',sky:'#c9d8c0',coins:32,xp:41},
  {id:'cinder',name:'The Cinder Pilgrimage',icon:'♨',length:6400,boss:'Azrath, Cinder Sovereign',kind:'demon',description:'Explore forked ash roads and dead-end ruined shrines. A horned, winged demon waits beyond the burning gates.',color:'#a78267',sky:'#cdb8a7',coins:44,xp:42},

@@ -1,5 +1,5 @@
 import * as THREE from './vendor/three.module.js';
-import {Voxels,characterModel} from './voxel-models.js?v=open-regions-1';
+import {Voxels,characterModel} from './voxel-models.js?v=kingdoms-art-1';
 // Geometry is rebuilt only when a talent is learned, not on animation frames.
 export function talentModel(id,skills=[0,0,0,0],demon=false){
  const model=characterModel(id,demon),colors={druid:['#caa56d','#88d65e','#e2edab','#c5dbef'],paladin:['#c4d5e8','#fff2b0','#ffc34c','#ffed8c'],warlock:['#94de78','#d4a2e8','#bf80ed','#ec617e'],wizard:['#90e9dc','#ff944d','#a4eaff','#e5e4ff']}[id],b=new Voxels();
